@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Models/test.glb" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/ViewportContainer.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/World.gd" type="Script" id=3]
+[ext_resource path="res://Sprites/Character.png" type="Texture" id=4]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 537, 319 )
+texture = ExtResource( 4 )
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+margin_left = 848.0
+margin_top = 422.0
+margin_right = 998.0
+margin_bottom = 572.0
+mouse_filter = 2
+stretch = true
+script = ExtResource( 2 )
+
+[node name="Viewport2" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 100, 100 )
+handle_input_locally = false
+render_target_update_mode = 3
+physics_object_picking = true
+
+[node name="World" type="Spatial" parent="ViewportContainer/Viewport2"]
+script = ExtResource( 3 )
+
+[node name="test" parent="ViewportContainer/Viewport2/World" instance=ExtResource( 1 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.0799052, -0.363539 )
+
+[node name="test2" parent="ViewportContainer/Viewport2/World" instance=ExtResource( 1 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.618234, 0.764281, 0.41538 )
+
+[node name="test3" parent="ViewportContainer/Viewport2/World" instance=ExtResource( 1 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.22325, -0.50701, -0.325928 )
+
+[node name="Camera" type="Camera" parent="ViewportContainer/Viewport2/World"]
+transform = Transform( 1, 0, 0, 0, 0.816944, 0.576717, 0, -0.576717, 0.816944, 0.0324783, 1.21933, 2.09762 )
